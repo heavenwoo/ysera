@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Group {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  name      String   @unique
+  isActive  Boolean  @default(false)
+  users     User[]
+}
+
+model User {
+  id             String       @id @default(cuid())
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now())
+  lastLoginAt    DateTime     @default(now())
+  email          String       @unique
+  username       String       @unique
+  password       String       @default(cuid())
+  sessionVersion Int          @default(1)
+  isVerified     Boolean      @default(false)
+  isActive       Boolean      @default(false)
+  firstName      String       @default("")
+  lastName       String       @default("")
+  language       String       @default("en")
+  avatar         String       @default("")
+  role           Role         @default(USER)
+  permissions    Permission[]
+  groupId        String?
+  groups         Group[]
+  followedBy     User[]       @relation("UserFollows")
+  following      User[]       @relation("UserFollows")
+}
+
+enum Role {
+  USER
+  STAFF
+  ADMIN
+  SUPERUSER
+}
+
+enum Permission {
+  appALL
+  groupCREATE
+  groupREAD
+  groupUPDATE
+  groupDELETE
+  groupALL
+  userCREATE
+  userREAD
+  userUPDATE
+  userDELETE
+  userALL
+  contactMessageCREATE
+  contactMessageREAD
+  contactMessageUPDATE
+  contactMessageDELETE
+  contactMessageALL
+}

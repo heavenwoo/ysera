@@ -1,0 +1,27 @@
+<button (click)="login()" color="primary" mat-raised-button>login</button>
+<button (click)="userSelf()" color="primary" mat-raised-button>user self</button>
+<!--<button color="primary" mat-raised-button (click)="users()">users</button>-->
+<button (click)="refreshToken()" color="primary" mat-raised-button>refresh token</button>
+<button (click)="logout()" color="primary" mat-raised-button>logout</button>
+<div>
+  {{ usersCount() }} - {{ loading() }}
+  <table *ngIf="usersEdge().length && !loading()">
+    <tr *ngFor="let edge of usersEdge()">
+      <td>{{ edge.node.id }}</td>
+      <td>{{ edge.node.username }}</td>
+    </tr>
+  </table>
+  <div *ngIf="loading()"><span>loading</span></div>
+  <ng-container *ngIf="usersEdge().length">
+    <button (click)="previousPage()" [disabled]="!currentPageInfo().hasPreviousPage" mat-raised-button>Previous page
+    </button>
+    <button (click)="nextPage()" [disabled]="!currentPageInfo().hasNextPage" mat-raised-button>Next page</button>
+  </ng-container>
+</div>
+<br />
+<div>
+  {{ authService.userId }} - {{ token() }}
+</div>
+<pre>
+  {{ currentUser() | json }}
+</pre>

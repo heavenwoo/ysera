@@ -1,0 +1,87 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ysera/agx-dto": [
+        "libs/agx-dto/src/index.ts"
+      ],
+      "@ysera/agx-util": [
+        "libs/agx-util/src/index.ts"
+      ],
+      "@ysera/ngx-auth": [
+        "libs/ngx-auth/src/index.ts"
+      ],
+      "@ysera/ngx-components": [
+        "libs/ngx-components/src/index.ts"
+      ],
+      "@ysera/ngx-directives": [
+        "libs/ngx-directives/src/index.ts"
+      ],
+      "@ysera/ngx-gql": [
+        "libs/gql/src/index.ts"
+      ],
+      "@ysera/ngx-graphql": [
+        "libs/ngx-graphql/src/index.ts"
+      ],
+      "@ysera/ngx-graphql/operations": [
+        "libs/ngx-graphql/src/lib/gql/index.gql.ts"
+      ],
+      "@ysera/ngx-graphql/schema": [
+        "libs/ngx-graphql/src/lib/gql.schema.ts"
+      ],
+      "@ysera/ngx-jwt": [
+        "libs/ngx-jwt/src/index.ts"
+      ],
+      "@ysera/ngx-local-storage": [
+        "libs/ngx-local-storage/src/index.ts"
+      ],
+      "@ysera/ngx-pages": [
+        "libs/ngx-pages/src/index.ts"
+      ],
+      "@ysera/ngx-pipes": [
+        "libs/ngx-pipes/src/index.ts"
+      ],
+      "@ysera/ngx-store": [
+        "libs/ngx-store/src/index.ts"
+      ],
+      "@ysera/ngx-user": [
+        "libs/ngx-user/src/index.ts"
+      ],
+      "@ysera/nsx-auth": [
+        "libs/nsx-auth/src/index.ts"
+      ],
+      "@ysera/nsx-common": [
+        "libs/nsx-common/src/index.ts"
+      ],
+      "@ysera/nsx-pagination": [
+        "libs/nsx-pagination/src/index.ts"
+      ],
+      "@ysera/nsx-prisma": [
+        "libs/nsx-prisma/src/index.ts"
+      ],
+      "@ysera/nsx-user": [
+        "libs/nsx-user/src/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
+}

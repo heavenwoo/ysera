@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=heaven
+      - POSTGRES_PASSWORD=heaven
+    ports:
+      - '54321:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local

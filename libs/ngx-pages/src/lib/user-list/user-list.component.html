@@ -1,0 +1,18 @@
+<div class="mt-4 grid md:grid-cols-4 gap-4">
+  <div class="col-span-4">{{ usersEdge.length }} / Total {{ totalCount }}</div>
+  <div *ngFor="let userEdge of usersEdge">
+    <ysera-user-card
+      (followingId)="connectFollowing($event)"
+      (unFollowingId)="disconnectFollowing($event)"
+      [follower]="currentUser()"
+      [keyword]="query()"
+      [user]="userEdge.node"
+    />
+  </div>
+  <div class="col-span-4 flex justify-center">
+    <button (click)="getUsers({ first: 20, after: pageInfo.endCursor })" [disabled]="!pageInfo.hasNextPage"
+            mat-fab>
+      <mat-icon class="mat-18">expand_more</mat-icon>
+    </button>
+  </div>
+</div>

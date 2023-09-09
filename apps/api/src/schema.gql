@@ -1,0 +1,188 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthStatusDto {
+  message: String
+  ok: Boolean!
+}
+
+type AuthTokenDto {
+  message: String
+  ok: Boolean!
+  token: String!
+}
+
+input AuthUserCredentialsInput {
+  email: String!
+  password: String!
+}
+
+input AuthUserSignupInput {
+  email: String!
+  firstName: String!
+  language: String!
+  lastName: String!
+  password: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Mutation {
+  authTokenRefresh: AuthTokenDto!
+  authUserLogin(data: AuthUserCredentialsInput!): AuthTokenDto!
+  authUserLogout: AuthStatusDto!
+  authUserSignup(data: AuthUserSignupInput!): AuthTokenDto!
+
+  """Connect a following to user"""
+  userConnectFollowing(data: UserWhereByIdInput!): UserDto!
+
+  """Disconnect a following to user"""
+  userDisconnectFollowing(data: UserWhereByIdInput!): UserDto!
+
+  """Update user's own info"""
+  userSelfUpdate(data: UserSelfUpdateInput!): UserDto!
+
+  """Privileged user update"""
+  userUpdate(data: UserUpdateInput!): UserDto!
+}
+
+"""Ascending or descending direction for a given `orderBy` argument."""
+enum OrderDirection {
+  asc
+  desc
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
+input PaginationArgs {
+  after: String
+  before: String
+  first: Int
+  last: Int
+}
+
+"""User permission"""
+enum Permission {
+  appALL
+  contactMessageALL
+  contactMessageCREATE
+  contactMessageDELETE
+  contactMessageREAD
+  contactMessageUPDATE
+  groupALL
+  groupCREATE
+  groupDELETE
+  groupREAD
+  groupUPDATE
+  userALL
+  userCREATE
+  userDELETE
+  userREAD
+  userUPDATE
+}
+
+type Query {
+  """Get other user info"""
+  user(data: UserWhereByIdInput!): UserDto!
+
+  """Get user's own info"""
+  userSelf(id: String!): UserDto!
+  users(orderBy: UserOrder, pageArgs: PaginationArgs, query: String = ""): UserConnection!
+}
+
+"""User role"""
+enum Role {
+  ADMIN
+  STAFF
+  SUPERUSER
+  USER
+}
+
+type UserConnection {
+  edges: [UserDtoEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserDto {
+  avatar: String
+
+  """Object's creation time"""
+  createdAt: DateTime!
+  email: String!
+  firstName: String
+  followedBy: [UserDto!]
+  following: [UserDto!]
+  groupId: ID
+  id: ID!
+
+  """User is active"""
+  isActive: Boolean
+
+  """User is verified"""
+  isVerified: Boolean
+  language: String
+  lastName: String
+  permissions: [Permission!]
+  role: Role
+
+  """Object's update time"""
+  updatedAt: DateTime!
+  username: String
+}
+
+type UserDtoEdge {
+  cursor: String!
+  node: UserDto!
+}
+
+input UserOrder {
+  direction: OrderDirection!
+  field: UserOrderField!
+}
+
+"""User connection order llist."""
+enum UserOrderField {
+  createdAt
+  firstName
+  id
+  lastName
+  updatedAt
+  username
+}
+
+input UserSelfUpdateInput {
+  firstName: String
+  id: ID!
+  language: String
+  lastName: String
+}
+
+input UserUpdateInput {
+  firstName: String
+  groupId: ID
+  id: ID!
+
+  """User is active"""
+  isActive: Boolean
+
+  """User is verified"""
+  isVerified: Boolean
+  language: String
+  lastName: String
+  permissions: [Permission!]!
+  role: Role
+}
+
+input UserWhereByIdInput {
+  id: ID!
+}
